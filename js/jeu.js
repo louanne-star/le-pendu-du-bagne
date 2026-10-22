@@ -2,6 +2,7 @@
    Le Pendu du Bagne — logique du jeu
    Règles :
    - une partie = 10 mots tirés au hasard, sans répétition
+   - la première lettre de chaque mot est affichée d'office
    - 7 erreurs maximum par mot : la lame descend d'un cran à chaque erreur
    - une défaite termine la partie
    - 2 indices par partie : un indice révèle une lettre au hasard
@@ -226,6 +227,13 @@
 
     elClavier.querySelectorAll(".touche").forEach((b) => (b.disabled = false));
     afficherMot();
+
+    // la première lettre est donnée d'office
+    const premiere = etat.actuel.lettres[0].base;
+    etat.trouvees.add(premiere);
+    desactiverTouche(premiere);
+    revelerLettre(premiere);
+
     etat.actif = true;
     majIndice();
   }
